@@ -51,7 +51,7 @@ class Cart extends Component {
                             <td>Estimated Tax:</td>
                             <td>${this.tax}</td>
                         </tr>
-                        <tr>
+                        <tr className="total-row">
                             <td>Order Total:</td>
                             <td>${this.total}</td>
                         </tr>

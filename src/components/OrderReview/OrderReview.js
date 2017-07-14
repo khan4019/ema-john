@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 
+import { getDatabaseCart } from '../../utilities/databaseManager';
+
+import fakeData from '../../fakeData';
+
 class OrderReview extends Component {
+
+
+    componentDidMount() {
+        var cart = getDatabaseCart();
+        console.log(cart);
+    }
+    
     render() {
         return (
             <div>

@@ -9,5 +9,10 @@ table td:last-child{
     text-align: right;
 }
 .total-row{
-
+    color: #b12704;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 22px;
+    border-top: 1px solid gray;
+    margin-top: 5px;
 }
