@@ -1,0 +1,13 @@
+.cart {
+    margin-left: 5px;
+}
+.cart table{
+    font-size: 12px;
+    text-align: left;
+}
+table td:last-child{
+    text-align: right;
+}
+.total-row{
+
+}
