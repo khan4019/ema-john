@@ -60,7 +60,6 @@ class Shop extends Component {
 
     handleSearch(event) {
         var searchText = event.target.value.toLowerCase();
-        console.log(searchText);
         var matched = fakeData.filter(item => item.category.toLowerCase().includes(searchText) || item.name.toLowerCase().includes(searchText));
         var first10 = matched.slice(0, 10);
         this.setState({
