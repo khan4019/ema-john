@@ -19,6 +19,7 @@ class Shop extends Component {
             cartCount:{}
         }
         this.addToCart = this.addToCart.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
     }
     componentDidMount() {
         var first10 = fakeData.slice(0, 10);
@@ -55,12 +56,27 @@ class Shop extends Component {
         });
 
         addToDatabaseCart(key, newCount);
-
     }
+
+    handleSearch(event) {
+        var searchText = event.target.value.toLowerCase();
+        console.log(searchText);
+        var matched = fakeData.filter(item => item.category.toLowerCase().includes(searchText) || item.name.toLowerCase().includes(searchText));
+        var first10 = matched.slice(0, 10);
+        this.setState({
+            items:first10
+        });
+    }
+
     render() {
         return (
             <div>
-                <h1>This is Shop</h1>
+                <div className="search-container">
+                    <input type="text" className="search-input" onKeyUp={this.handleSearch} placeholder="type here to search" />
+                    <Link to="/review">
+                        <span className="cart-count">{this.state.cart.length}</span>
+                    </Link>
+                </div>
                 <div className="shop-container">
                     <div className="items-container">
                         {this.state.items.map(item => <ShopItem key={item.key} item={item} addToCart={this.addToCart}></ShopItem> )}
