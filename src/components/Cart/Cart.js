@@ -57,6 +57,7 @@ class Cart extends Component {
                         </tr>
                     </tbody>
                 </table>
+                {this.props.children}
             </div>
         );
     }

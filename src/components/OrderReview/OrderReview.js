@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import { getDatabaseCart, removeFromDatabaseCart } from '../../utilities/databaseManager';
-
+import { getDatabaseCart, removeFromDatabaseCart, processOrder } from '../../utilities/databaseManager';
+import happy from '../../images/giphy.gif';
 import fakeData from '../../fakeData';
 import Header from '../Header/Header';
 import './OrderReview.css';
@@ -13,9 +13,11 @@ class OrderReview extends Component {
     constructor() {
         super();
         this.state = {
-            cart:[]
+            cart: [],
+            isOrdered: false
         }
         this.handleRemove = this.handleRemove.bind(this);
+        this.handleOrder = this.handleOrder.bind(this);
     }
 
     componentDidMount() {
@@ -38,17 +40,39 @@ class OrderReview extends Component {
         });
         removeFromDatabaseCart(key);
     }
+
+    handleOrder() {
+        processOrder(this.state.cart);
+        this.setState({
+            cart: [],
+            isOrdered: true
+        })
+        
+    }
     
     render() {
+        let itemSection = null;
+        let cartSection = null;
+        if (this.state.isOrdered) {
+            itemSection = <img src={happy} alt="will add this later"/>
+        } else {
+            itemSection = this.state.cart.map(item => <CartItem key={item.key} item={item} handleRemove={this.handleRemove}></CartItem>)
+            cartSection = (<Cart cart={this.state.cart}>
+                            <button onClick={this.handleOrder}>
+                                place order
+                            </button>
+                        </Cart>)
+        }
         return (
             <div>
                 <Header></Header>
                 <div className="review-container">
+                    {processOrder}
                     <div className="item-container">
-                        {this.state.cart.map(item => <CartItem key={item.key} item={item} handleRemove={this.handleRemove}></CartItem> )}
+                        {itemSection}
                     </div>
                     <div className="cart-container">
-                        <Cart cart={this.state.cart}></Cart>
+                        {cartSection}
                     </div>
                 </div>
             </div>

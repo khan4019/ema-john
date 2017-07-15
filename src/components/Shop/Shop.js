@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import {Link} from 'react-router-dom';
+
 import './Shop.css';
 
 import ShopItem from '../ShopItem/ShopItem';
@@ -64,7 +66,13 @@ class Shop extends Component {
                         {this.state.items.map(item => <ShopItem key={item.key} item={item} addToCart={this.addToCart}></ShopItem> )}
                     </div>
                     <div className="cart-container">
-                        <Cart cart={this.state.cart}></Cart>
+                        <Cart cart={this.state.cart}>
+                            <Link to="/review">
+                                <button>
+                                    <span>Review your order</span>
+                                </button>
+                            </Link>
+                        </Cart>
                     </div>
                 </div>
             </div>

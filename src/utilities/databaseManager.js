@@ -35,8 +35,7 @@ const removeFromDatabaseCart = key => {
 }
 
 const processOrder = (cart) => {
-    const cartRef = getDataKey();
-    cartRef.remove();
+    localStorage.removeItem(getDataKey());
 }
 
 export {addToDatabaseCart, getDatabaseCart, removeFromDatabaseCart, processOrder};
