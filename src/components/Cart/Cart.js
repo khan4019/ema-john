@@ -7,13 +7,13 @@ class Cart extends Component {
         this.price = 0;
         this.shipping = 0;
         this.beforeTax = 0;
-        this.tax;
+        this.tax = 0;
         this.total = 0;
     }
     calculateCost() {
-        var itemPrice = this.props.cart.reduce((prev, item) => item.price + prev, 0);
+        var itemPrice = this.props.cart.reduce((prev, item) => item.price * (item.quantity || 1) + prev, 0);
         
-        var shippingPrice = this.props.cart.reduce((prev, item) => item.shipping + prev, 0);
+        var shippingPrice = this.props.cart.reduce((prev, item) => item.shipping * (item.quantity || 1) + prev, 0);
 
         this.price = this.roundTwoDecimal(itemPrice);
         this.shipping = this.roundTwoDecimal(shippingPrice);

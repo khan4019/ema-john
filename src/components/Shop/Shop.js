@@ -6,7 +6,7 @@ import ShopItem from '../ShopItem/ShopItem';
 import Cart from '../Cart/Cart';
 import fakeData from '../../fakeData';
 
-import {addToDatabaseCart} from '../../utilities/databaseManager';
+import {addToDatabaseCart, getDatabaseCart} from '../../utilities/databaseManager';
 
 class Shop extends Component {
     constructor() {
@@ -22,6 +22,18 @@ class Shop extends Component {
         var first10 = fakeData.slice(0, 10);
         this.setState({
             items:first10
+        });
+
+        //set cart
+        var cart = getDatabaseCart();
+        var keys = Object.keys(cart);
+        var items = keys.map(key => {
+            var item = fakeData.find(itm => itm.key === key);
+            item.quantity = cart[key];
+            return item;
+        });
+        this.setState({
+            cart: items
         });
     }
 

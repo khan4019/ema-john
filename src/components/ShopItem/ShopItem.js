@@ -7,6 +7,7 @@ import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 class ShopItem extends Component {
     render() {
         const item = this.props.item;
+        console.log(item.shipping);
         return (
             <div className="item">
                 <div>
