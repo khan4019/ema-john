@@ -4,6 +4,8 @@ import './ShopItem.css';
 import Rating from 'react-rating';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 
+
+//comment
 class ShopItem extends Component {
     render() {
         const item = this.props.item;
